@@ -1,0 +1,24 @@
+{
+  "name": "si.cou.yalesmartalarm",
+  "version": "1.0.0",
+  "description": "Yale Smart Alarm integration for Homey.",
+  "main": "app.js",
+  "dependencies": {
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/violuke/homey-yale-smart-alarm.git"
+  },
+  "author": "Luke Cousins",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/violuke/homey-yale-smart-alarm/issues"
+  },
+  "homepage": "https://github.com/violuke/homey-yale-smart-alarm#readme"
+}

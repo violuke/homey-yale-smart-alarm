@@ -13,5 +13,27 @@
     "author": {
         "name": "Luke Cousins",
         "email": "luke@cou.si"
+    },
+    "flow": {
+        "actions": [
+            {
+                "id": "fully_arm",
+                "title": {
+                    "en": "Fully arm the alarm"
+                }
+            },
+            {
+                "id": "part_arm",
+                "title": {
+                    "en": "Part arm the alarm"
+                }
+            },
+            {
+                "id": "disarm",
+                "title": {
+                    "en": "Disarm the alarm"
+                }
+            }
+        ]
     }
 }
