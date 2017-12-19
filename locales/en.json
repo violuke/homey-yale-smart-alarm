@@ -1,1 +1,10 @@
-{}
+{
+    "settings": {
+        "title": "Yale Smart Alarm Settings",
+        "login_title": "Yale Smart Alarm Login Details",
+        "login_intro": "Your Homey needs your login details for your Yale Smart Alarm in order to be able to communicate with it. These are stored locally on your Homey and all connections to your Yale Smart Alarm's internet based API are made directly from your Homey. These settings are never shared with the app developer, Athom or anyone else.",
+        "username": "Login ID/Email Address",
+        "password": "Password",
+        "save_changes": "Save changes"
+    }
+}

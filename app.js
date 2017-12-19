@@ -39,6 +39,7 @@ class YaleSmartAlarm extends Homey.App {
 
         // Setup the request handler. We need to keep cookies.
         this.requestPromise = requestPromise.defaults({jar: true});
+        this.HomeyGet = Homey.get;
 
         this.log('Yale Smart Alarm App is running...');
 	}
@@ -79,15 +80,14 @@ class YaleSmartAlarm extends Homey.App {
         });
 	}
 
-	getLoginId() {
-	    // TODO: READ FROM CONFIG
-	    return 'your login';
-    }
-
-	getLoginPassword() {
-        // TODO: READ FROM CONFIG
-	    return 'your password';
-    }
+    // getLoginId() {
+    //     return Homey.get('username');
+    // }
+    //
+    // getLoginPassword() {
+    //     const Homey = require('homey');
+    //     return Homey.get('password');
+    // }
 
 	alarmStateChange(newState, that) {
         //
@@ -97,8 +97,8 @@ class YaleSmartAlarm extends Homey.App {
             uri: 'https://www.yalehomesystem.co.uk/homeportal/api/login/check_login/',
             method: 'POST',
             form: {
-                id: that.getLoginId(),
-                password: that.getLoginPassword(),
+                id: that.HomeyGet('username'),
+                password: that.HomeyGet('password'),
             },
             headers: {
                 'User-Agent': 'YaleSmartAlarm/Homey Integration by violuke.'
@@ -122,8 +122,8 @@ class YaleSmartAlarm extends Homey.App {
                 uri: 'https://www.yalehomesystem.co.uk/homeportal/api/panel/set_panel_mode?area=1&mode='+newState,
                 method: 'POST',
                 form: {
-                    id: that.getLoginId(),
-                    password: that.getLoginPassword(),
+                    id: that.HomeyGet('username'),
+                    password: that.HomeyGet('password'),
                 },
                 headers: {
                     'User-Agent': 'YaleSmartAlarm/Homey Integration by violuke.'
