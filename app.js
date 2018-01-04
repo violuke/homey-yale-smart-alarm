@@ -137,7 +137,7 @@ class YaleSmartAlarm extends Homey.App {
                 }
                 that.log('State change of alarm ok:', parsedBody);
 
-                // TODO: Return if good of bad here
+                // TODO: This is returning true, but I need the return false's that are in other places to work.
                 return true;
 
 
