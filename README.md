@@ -6,6 +6,7 @@ Adds basic interaction with Yale Smart Alarm systems.
 ...and as such I do not recommend you using it (yet).
 
 ## TODO
+* Read specified username and password from settings.
 * If any of the actions fail, correctly return the failure so there is a red X shown in the flow.
 
 ## Credits
