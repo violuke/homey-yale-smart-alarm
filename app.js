@@ -138,9 +138,7 @@ class YaleSmartAlarm extends Homey.App {
                 }
                 that.log('State change of alarm ok:', parsedBody);
 
-                // TODO: This is returning true, but I need the return false's that are in other places to work.
                 return Promise.resolve(true);
-
 
             }).catch(function (err) {
                 that.log('Alarm state change failed with exception:', err);
