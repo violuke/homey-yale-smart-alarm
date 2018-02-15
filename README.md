@@ -2,12 +2,11 @@
 
 Adds basic interaction with Yale Smart Alarm systems.
 
-## THIS IS A WORK IN PROGRESS
-...and as such I do not recommend you using it (yet).
+It is now considered stable, but please report any issues found.
 
 ## TODO
-* Read specified username and password from settings.
-* If any of the actions fail, correctly return the failure so there is a red X shown in the flow.
+* Allow Homey to know the state of the alarm and trigger flows based on changes (would probably need to poll the alarm's API)
+
 
 ## Credits
 This app was written entirely by me, but the following sources helped:

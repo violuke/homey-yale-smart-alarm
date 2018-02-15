@@ -81,17 +81,6 @@ class YaleSmartAlarm extends Homey.App {
         });
 	}
 
-    HomeyGet(varName){
-	    // TODO: Make this read the config that's actually set
-	    if (varName === 'username'){
-	        return 'YOUR LOGIN';
-        } else if (varName === 'password'){
-	        return 'YOUR PASSWORD';
-        } else {
-	        throw 'Unknown var '+varName;
-        }
-    }
-
     // getLoginId() {
     //     return Homey.get('username');
     // }
@@ -109,8 +98,8 @@ class YaleSmartAlarm extends Homey.App {
             uri: 'https://www.yalehomesystem.co.uk/homeportal/api/login/check_login/',
             method: 'POST',
             form: {
-                id: that.HomeyGet('username'),
-                password: that.HomeyGet('password'),
+                id: Homey.ManagerSettings.get('username'),
+                password: Homey.ManagerSettings.get('password')
             },
             headers: {
                 'User-Agent': 'YaleSmartAlarm/Homey Integration by violuke.'
@@ -134,8 +123,8 @@ class YaleSmartAlarm extends Homey.App {
                 uri: 'https://www.yalehomesystem.co.uk/homeportal/api/panel/set_panel_mode?area=1&mode='+newState,
                 method: 'POST',
                 form: {
-                    id: that.HomeyGet('username'),
-                    password: that.HomeyGet('password'),
+                    id: Homey.ManagerSettings.get('username'),
+                    password: Homey.ManagerSettings.get('password')
                 },
                 headers: {
                     'User-Agent': 'YaleSmartAlarm/Homey Integration by violuke.'
