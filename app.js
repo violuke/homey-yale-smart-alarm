@@ -11,7 +11,6 @@ class YaleSmartAlarm extends Homey.App {
         fullyArmAction
             .register()
             .registerRunListener((args, state) => {
-
                     let isCompleted = this.fullyArm();
                     return Promise.resolve(isCompleted);
                 }
@@ -39,7 +38,6 @@ class YaleSmartAlarm extends Homey.App {
 
         // Setup the request handler. We need to keep cookies.
         this.requestPromise = requestPromise.defaults({jar: true});
-        this.HomeyGet = Homey.get;
 
         this.log('Yale Smart Alarm App is running...');
 	}
@@ -49,10 +47,11 @@ class YaleSmartAlarm extends Homey.App {
 
         let that = this;
 
-        return new Promise(function () {
+        return new Promise(function (resolve, reject) {
             return resolve(that.alarmStateChange('arm', that));
         }).catch(function(err) {
-            that.log('Error with main promise', err)
+            that.log('Error with main promise', err);
+            return Promise.reject(err);
         });
 	}
 
@@ -61,10 +60,11 @@ class YaleSmartAlarm extends Homey.App {
 
         let that = this;
 
-        return new Promise(function () {
+        return new Promise(function (resolve, reject) {
             return resolve(that.alarmStateChange('home', that));
         }).catch(function(err) {
-            that.log('Error with main promise', err)
+            that.log('Error with main promise', err);
+            return Promise.reject(err);
         });
 	}
 
@@ -73,12 +73,24 @@ class YaleSmartAlarm extends Homey.App {
 
         let that = this;
 
-        return new Promise(function (resolve , reject) {
-             return resolve(that.alarmStateChange('disarm', that));
+        return new Promise(function (resolve, reject) {
+            return resolve(that.alarmStateChange('disarm', that));
         }).catch(function(err) {
             that.log('Error with main promise', err);
+            return Promise.reject(err);
         });
 	}
+
+    HomeyGet(varName){
+	    // TODO: Make this read the config that's actually set
+	    if (varName === 'username'){
+	        return 'YOUR LOGIN';
+        } else if (varName === 'password'){
+	        return 'YOUR PASSWORD';
+        } else {
+	        throw 'Unknown var '+varName;
+        }
+    }
 
     // getLoginId() {
     //     return Homey.get('username');
@@ -108,7 +120,7 @@ class YaleSmartAlarm extends Homey.App {
             // Ensure login was successful
             if (parsedBody.result == 0){
                 that.log('Login to alarm system failed with code:', parsedBody.code, 'and message:', parsedBody.message);
-                return false;
+                throw 'Login failed';
             }
             that.log('Logged into alarm ok:', parsedBody);
 
@@ -133,17 +145,17 @@ class YaleSmartAlarm extends Homey.App {
                 // Ensure action was successful
                 if (parsedBody.result == 0){
                     that.log('State change of alarm system failed with code:', parsedBody.code, 'and message:', parsedBody.message);
-                    return false;
+                    throw 'State change failed';
                 }
                 that.log('State change of alarm ok:', parsedBody);
 
                 // TODO: This is returning true, but I need the return false's that are in other places to work.
-                return true;
+                return Promise.resolve(true);
 
 
             }).catch(function (err) {
                 that.log('Alarm state change failed with exception:', err);
-                return false;
+                throw err;
             }).finally(function (){
                 //
                 // Logout
@@ -166,7 +178,7 @@ class YaleSmartAlarm extends Homey.App {
 
         }).catch(function (err) {
             that.log('Login to alarm system failed with exception:', err);
-            return false;
+            throw err;
         });
     }
 }
