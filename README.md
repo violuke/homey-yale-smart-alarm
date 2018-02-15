@@ -1,6 +1,9 @@
 # Yale Smart Alarm
 
-Adds basic interaction with Yale Smart Alarm systems.
+Adds basic interaction with Yale Smart Alarm systems. You can use action cards within your flows to:
+* Fully arm the alarm
+* Part-arm the alarm
+* Disarm the alarm
 
 It is now considered stable, but please report any issues found.
 

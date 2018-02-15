@@ -14,6 +14,13 @@
         "name": "Luke Cousins",
         "email": "luke@cou.si"
     },
+    "images": {
+        "large": "/assets/images/large.jpg",
+        "small": "/assets/images/small.jpg"
+    },
+    "bugs": {
+        "url": "https://github.com/violuke/homey-yale-smart-alarm/issues"
+    },
     "flow": {
         "actions": [
             {
